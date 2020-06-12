@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function myPromise(executor) {
+            let _this = this;
+            _this.state = 'pendding';
+            _this.value = undefined;
+            _this.reason = undefined;
+            _this.fulFilledArr = [];
+            _this.rejectedArr = [];
+
+            executor(resolve, reject);
+
+            function resolve(value) {
+                if (_this.state = 'pedding') {
+                    _this.state = 'fulfilled';
+                    _this.value = value;
+                }
+
+                _this.fulFilledArr.forEach(fn => fn(value));
+
+            }
+
+            function reject(reason) {
+                if (_this.state = 'pedding') {
+                    _this.state = 'reject';
+                    _this.reason = reason;
+                }
+
+                _this.fulFilledArr.forEach(fn => fn(reason));
+
+            }
+        }
+
+        myPromise.prototype.then = function(fulfilled, rejected) {
+
+            if (this.state === 'pendding') {
+                if (typeof fulfilled === 'function') {
+                    this.fulFilledArr.push(fulfilled);
+                }
+                if (typeof rejected === 'function') {
+                    this.rejectedArr.push(rejected);
+                }
+            }
+
+        }
+
+        let http = new myPromise((resolve, reject) => {
+            console.log(666);
+            //resolve(5555);
+            //reject(444);
+            setTimeout(() => {
+                console.log(888)
+            })
+            setTimeout(() => {
+                resolve(555);
+            })
+
+            console.log(777);
+        })
+
+        http.then((res) => {
+            console.log(res);
+        }, (err) => {
+            console.log(errs);
+        })
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

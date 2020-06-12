@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function myInstanceOf(child, father) {
+            let proto = child.__proto__;
+            let prototype = father.prototype;
+            let flag = false;
+            while (proto) {
+                if (proto === prototype) {
+                    flag = true;
+                    break;
+                }
+
+                proto = proto.__proto__;
+            }
+
+            return flag;
+        }
+
+        function a() {
+
+        }
+
+        function b() {
+
+        }
+        console.log(myInstanceOf(a, b));
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

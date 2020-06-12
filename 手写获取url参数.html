@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getParamsOnUrl(url, params) {
+            let arr = url.split('?')[1];
+            let paramsArr = arr.split(/\=|\&/);
+            console.log(paramsArr)
+            return paramsArr.indexOf(params) === -1 ? undefined : paramsArr[paramsArr.indexOf(params) + 1];
+        }
+        console.log(getParamsOnUrl('adasdsadsad?a=1&b=haha', 'a'));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

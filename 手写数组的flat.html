@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			let arr = [1, 1, [23, 23]];
+			console.log(arr.toString())
+			//			function myFlat(){
+			//				return arr.toString().split(',').map(item=>{
+			//					return Number(item);
+			//				})
+			//			}
+
+			function myFlat() {
+				return arr.join().split(',').map(item => {
+					return Number(item);
+				})
+			}
+
+			console.log(myFlat(arr));
+			
+			console.log(arr.join())
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>

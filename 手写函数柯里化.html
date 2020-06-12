@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function add(x){
+				return function(y){
+					return x+y;
+				}
+			}
+			
+			let six = add(6);
+			console.log(six(7));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

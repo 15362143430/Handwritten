@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function fangfou(fn, delay) {
+            let timer = null;
+            return function() {
+                clearTimeout(timer);
+                setTimeout(() => {
+                    fn.call(this);
+                }, delay)
+            }
+        }
+
+        function jieliu(fn, delay) {
+            let lasttime = 0;
+
+            return function() {
+                let nowtime = new Date().getTime();
+                if (nowtime - lasttime > delay) {
+                    fn.call(this);
+                    lasttime = nowtime;
+                }
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

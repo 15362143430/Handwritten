@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function deepClone(obj) {
+            if (typeof obj !== 'object') {
+                return;
+            }
+            var temp = Array.isArray(obj) ? [] : {};
+
+            for (let key in obj) {
+                temp[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
+            }
+
+            return temp;
+        }
+
+
+        let people = {
+            name: 'lin',
+            body: {
+                height: 176,
+                width: 76
+            },
+            hobbies: [{
+                haha: {
+                    h: 11
+                }
+            }]
+        }
+
+        let lin = deepClone(people);
+        console.log(lin);
+        people.name = 'haha';
+        console.log(lin);
+        console.log(people);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

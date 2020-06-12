@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        Function.prototype.myCall = function(context) {
+            if (typeof this !== 'function') {
+                throw new Error('不是函数哦')
+            }
+
+            context = context || window;
+
+            context.fn = this;
+
+            arguments[1] ? context.fn(...[].slice.call(arguments, 1)) : context.fn();
+
+            delete context.fn;
+        }
+
+        Function.prototype.myApply = function(context) {
+            if (typeof this !== 'function') {
+                throw new Error('不是一个函数');
+            }
+
+            context = context || window;
+
+            context.fn = this;
+
+            arguments[1] ? context.fn(...arguments[1]) : context.fn();
+
+            delete context.fn;
+        }
+
+        Function.prototype.myBind = function(context) {
+            if (typeof this !== 'function') {
+                throw new Error('不是一个函数');
+            }
+
+            context = context || window;
+
+            let argu = arguments[1] ? [].slice.call(arguments, 1) : [];
+
+            return (...canshu) => {
+                this.apply(context, argu.concat(canshu));
+            }
+
+
+        }
+
+        let obj = {
+            value: '1'
+        };
+
+        function sayValue(name, age) {
+            console.log(name);
+            console.log(age);
+            console.log(this.value);
+        }
+
+        sayValue.myCall(obj, '林三心', 20);
+        sayValue.myApply(obj, ['林三心', 20]);
+
+
+        let bindReturn = sayValue.myBind(obj);
+        bindReturn(1, 2);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
